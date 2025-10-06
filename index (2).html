@@ -1,0 +1,13 @@
+<script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
+<textarea id="pycode">print("Hello, world!")</textarea>
+<button onclick="runPy()">Run</button>
+<pre id="output"></pre>
+<script>
+  let pyodideReadyPromise = loadPyodide();
+  async function runPy() {
+    let pyodide = await pyodideReadyPromise;
+    let code = document.getElementById('pycode').value;
+    let output = await pyodide.runPythonAsync(code);
+    document.getElementById('output').textContent = output;
+  }
+</script>
